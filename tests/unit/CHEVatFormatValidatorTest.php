@@ -3,6 +3,7 @@
 namespace rocketfellows\CHEVatFormatValidator\tests\unit;
 
 use PHPUnit\Framework\TestCase;
+use rocketfellows\CHEVatFormatValidator\CHEVatFormatValidator;
 
 class CHEVatFormatValidatorTest extends TestCase
 {
