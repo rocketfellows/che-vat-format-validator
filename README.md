@@ -1,33 +1,8 @@
-# Country vat format validator template description
-
-## Implementation steps
-
-1. Create repository use template for name: <ISO-3166-standard-alpha2-code>-vat-format-validator
-2. Update composer.json **name** attribute: rocketfellows/<ISO-3166-standard-alpha2-code>-vat-format-validator
-3. Update composer.json with autoload and autoload-dev sections by pattern:
-```php
-   "autoload": {
-        "psr-4": {
-            "rocketfellows\\<ISO-3166-standard-alpha2-code>VatFormatValidator\\": "src/"
-        }
-   },
-   "autoload-dev": {
-        "psr-4": {
-            "rocketfellows\\<ISO-3166-standard-alpha2-code>VatFormatValidator\\tests\\": "tests/"
-        }
-   }
-```
-3. Run docker-deploy.sh
-4. Implement unit test in test/unit directory
-5. Implement direct validator
-
-# Templated readme
-
-# <Country> vat format validator
+# Switzerland vat format validator
 
 ![Code Coverage Badge](./badge.svg)
 
-This component provides <Country> vat number format validator.
+This component provides Switzerland vat number format validator.
 
 Implementation of interface **rocketfellows\CountryVatFormatValidatorInterface\CountryVatFormatValidatorInterface**
 
@@ -36,17 +11,18 @@ Depends on https://github.com/rocketfellows/country-vat-format-validator-interfa
 ## Installation
 
 ```shell
-composer require rocketfellows/<ISO-3166-standard-alpha2-code>-vat-format-validator
+composer require rocketfellows/che-vat-format-validator
 ```
 
 ## Usage example
 
-Valid <Country> vat number:
+Valid Switzerland vat number:
 
 ```php
-$validator = new <Country>VatFormatValidator();
-$validator->isValid('');
-$validator->isValid('');
+$validator = new CHEVatFormatValidator();
+$validator->isValid('CHE-123.456.789 MWST');
+$validator->isValid('CHE-123.456.789 TVA');
+$validator->isValid('CHE-123.456.789 IVA');
 ```
 
 Returns:
@@ -54,17 +30,60 @@ Returns:
 ```shell
 true
 true
+true
 ```
 
-Invalid <Country> vat number:
+Invalid Switzerland vat number:
 
 ```php
-$validator = new <Country>VatFormatValidator();
-$validator->isValid('');
+$validator = new CHEVatFormatValidator();
+$validator->isValid('CHE-116.301.376 FOO');
+$validator->isValid('CHE-116.301.37 MWST');
+$validator->isValid('CHE-116.30.376 MWST');
+$validator->isValid('CHE-11.301.376 MWST');
+$validator->isValid('DE-111.301.376 MWST');
+$validator->isValid('CHE-123.456.789 mwst');
+$validator->isValid('CHE-123.456.789 tva');
+$validator->isValid('CHE-123.456.789 iva');
+$validator->isValid('che-123.456.789 MWST');
+$validator->isValid('CHE-12.45.78 IVA');
+$validator->isValid('CHE-123.456.789  IVA');
+$validator->isValid('CHE-123.456.789IVA');
+$validator->isValid('CHE- 123.456.789 IVA');
+$validator->isValid('CHE123.456.789 IVA');
+$validator->isValid('CHE 123.456.789 IVA');
+$validator->isValid('CHE123456789IVA');
+$validator->isValid('CHE-116.283.229');
+$validator->isValid('CHE116.283.229');
+$validator->isValid('116.283.229');
+$validator->isValid('116283229');
+$validator->isValid('1');
+$validator->isValid('0');
 $validator->isValid('');
 ```
 
 ```shell
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
 false
 false
 ```
@@ -74,4 +93,3 @@ false
 Welcome to pull requests. If there is a major changes, first please open an issue for discussion.
 
 Please make sure to update tests as appropriate.
-
