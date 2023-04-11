@@ -65,6 +65,18 @@ class CHEVatFormatValidatorTest extends TestCase
                 'vatNumber' => 'CHE-999.999.999 IVA',
                 'isValid' => true,
             ],
+            [
+                'vatNumber' => 'CHE-123.456.789 MWST',
+                'isValid' => true,
+            ],
+            [
+                'vatNumber' => 'CHE-123.456.789 TVA',
+                'isValid' => true,
+            ],
+            [
+                'vatNumber' => 'CHE-123.456.789 IVA',
+                'isValid' => true,
+            ],
         ];
     }
 }
