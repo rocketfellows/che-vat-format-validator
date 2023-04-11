@@ -30,8 +30,16 @@ class CHEVatFormatValidatorTest extends TestCase
     {
         return [
             [
-                'vatNumber',
-                'isValid',
+                'vatNumber' => 'CHE-000.000.000 MWST',
+                'isValid' => true,
+            ],
+            [
+                'vatNumber' => 'CHE-000.000.000 TVA',
+                'isValid' => true,
+            ],
+            [
+                'vatNumber' => 'CHE-000.000.000 IVA',
+                'isValid' => true,
             ],
         ];
     }
